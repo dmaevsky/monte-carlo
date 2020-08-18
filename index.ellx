@@ -1,0 +1,53 @@
+version: 1.1
+nodes:
+  m = 10000001
+  $34 = tf.getBackend()
+  $35 = tf.enableProdMode()
+  naive = estimate_pi(m)
+  x = tf.randomUniform([m])
+  y = tf.randomUniform([m])
+  $33 = tf.tidy(() => tf.mean(x*x + y*y < 1)*4).toString()
+layout:
+[,
+  [,
+    {
+      "node": "m"
+    },,,
+    {
+      "value": "Backend"
+    },
+    {
+      "node": "$34"
+    },
+    {
+      "node": "$35"
+    }
+  ],
+  [,,
+    {
+      "node": "naive",
+      "expansion": {
+        "vertical": true,
+        "labelsLeft": true,
+        "secondary": false,
+        "height": 2,
+        "width": 1
+      }
+    }
+  ],,,
+  [,
+    {
+      "node": "x"
+    }
+  ],
+  [,
+    {
+      "node": "y"
+    }
+  ],,
+  [,
+    {
+      "node": "$33"
+    }
+  ]
+]
