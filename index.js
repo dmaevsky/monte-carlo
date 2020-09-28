@@ -1,11 +1,9 @@
-import 'https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js'
-
-const rand = Math.random;
+import * as tf from '@tensorflow/tfjs';
 
 function estimate_p(m) {
   let count = 0;
   for (let i = 0; i < m; i++) {
-    const [x, y] = [rand(), rand()];
+    const [x, y] = [Math.random(), Math.random()];
     if (x * x + y * y < 1.) count++;
   }
   return count / m;
@@ -16,8 +14,6 @@ export function estimate_pi(m) {
   const std = Math.sqrt(p * (1-p) / m);
   return { pi: 4 * p, std: 4 * std };
 }
-
-export const tf = window.tf;
 
 tf.Tensor.prototype.__EllxMeta__ =   {
   operator: {
@@ -38,3 +34,7 @@ tf.Tensor.prototype.__EllxMeta__ =   {
     }
   }
 };
+
+export { tf };
+export { plot } from '~ellx-hub/plot';
+export { piPlot } from './plot.js';
