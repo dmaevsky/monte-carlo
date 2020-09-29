@@ -2,7 +2,7 @@
 
 First things first, Monte-Carlo is a numerical algorithm for computing all kinds of expectations (a fancy word for the average outcome), especially in situations too complex for expectations to be computed analytically or near analytically. This includes probabilities of events, which are expectations of indicator functions of the event.
 
-One textbook application is for the estimations of the decimals of $\pi$. Suppose you are randomly throwing darts at a square board of dimension $2x2$ with an inner circle of radius $1$.
+One textbook application is for the estimations of the decimals of $\pi$. Suppose you are randomly throwing darts at a square board of dimension 2x2 with an inner circle of radius 1.
 
 <svg
   width="300px"
@@ -54,8 +54,8 @@ x = tf.randomUniform([m])
 y = tf.randomUniform([m])
 tf_pi = tf.tidy(() => tf.mean(x*x + y*y < 1)*4)
 ```
-x: {x}
+x = {x}
 
-y: {y}
+y = {y}
 
-Pi estimate: {tf_pi}
+tf_pi = {tf_pi}
