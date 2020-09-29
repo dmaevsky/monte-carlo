@@ -39,15 +39,24 @@ layout:
   ],,,
   [,
     {
+      "value": "x"
+    },
+    {
       "node": "x"
     }
   ],
   [,
     {
+      "value": "y"
+    },
+    {
       "node": "y"
     }
   ],,
   [,
+    {
+      "value": "tf_pi"
+    },
     {
       "node": "tf_pi"
     }
