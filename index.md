@@ -1,5 +1,7 @@
 # Monte-Carlo
 
+*[Original article by Dr. Antoine Savine](https://www.quora.com/What-are-Monte-Carlos-applications-on-finance)*
+
 First things first, Monte-Carlo is a numerical algorithm for computing all kinds of expectations (a fancy word for the average outcome), especially in situations too complex for expectations to be computed analytically or near analytically. This includes probabilities of events, which are expectations of indicator functions of the event.
 
 One textbook application is for the estimations of the decimals of $\pi$. Suppose you are randomly throwing darts at a square board of dimension 2x2 with an inner circle of radius 1.
