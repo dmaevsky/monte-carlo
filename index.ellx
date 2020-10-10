@@ -1,28 +1,25 @@
 version: 1.1
 nodes:
   m = 1000000
-  $34 = tf.getBackend()
   naive = estimate_pi(m)
   x = tf.randomUniform([m])
   y = tf.randomUniform([m])
+  $34 = tf.getBackend()
   tf_pi = tf.tidy(() => tf.mean(x*x + y*y < 1)*4)
   n = 10
   m_min = 2000
   r = range(n)
-  mm = r.map(i => m_min * (1 << i))
-  runs = mm.map(npaths => Object.assign({ npaths }, estimate_pi(npaths)))
+  npaths = r.map(i => m_min * (1 << i))
+  runs = npaths.map(mm => Object.assign({ npaths:mm }, estimate_pi(mm)))
   convergencePlot = plot(runs, piPlot)
 layout:
 [,
   [,
     {
       "node": "m"
-    },,,
-    {
-      "value": "Backend"
     },
     {
-      "node": "$34"
+      "value": "// naive = estimate_pi(m)"
     }
   ],
   [,,
@@ -37,6 +34,14 @@ layout:
       }
     }
   ],,,
+  [,,
+    {
+      "value": "// x = tf.randomUniform([m])"
+    },,,
+    {
+      "value": "//y = tf.randomUniform([m])"
+    }
+  ],
   [,
     {
       "value": "x"
@@ -55,12 +60,17 @@ layout:
   ],,
   [,
     {
-      "value": "tf_pi"
+      "value": "Backend"
     },
+    {
+      "node": "$34"
+    }
+  ],
+  [,
     {
       "node": "tf_pi"
     }
-  ],,,
+  ],,
   [,
     {
       "node": "n"
@@ -72,6 +82,12 @@ layout:
   [,,
     {
       "value": "m"
+    },
+    {
+      "value": "// runs = npaths.map(mm => Object.assign({ npaths:mm }, estimate_pi(mm)))"
+    },,,,,,
+    {
+      "value": "// convergencePlot = plot(runs, piPlot)"
     }
   ],
   [,
@@ -79,12 +95,14 @@ layout:
       "node": "r",
       "expansion": {
         "vertical": true,
+        "labelsLeft": false,
+        "labelsTop": false,
         "height": 10,
         "width": 1
       }
     },
     {
-      "node": "mm",
+      "node": "npaths",
       "expansion": {
         "vertical": true,
         "height": 10,
@@ -96,11 +114,11 @@ layout:
       "expansion": {
         "vertical": true,
         "secondary": true,
-        "labelsTop": true,
+        "labelsTop": false,
         "height": 10,
         "width": 3
       }
-    },,,,
+    },,,,,,
     {
       "node": "convergencePlot"
     }
